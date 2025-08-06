@@ -8,8 +8,8 @@ var AppView = Backbone.View.extend({
   },
 
   template: _.template(`
-    <p>Hello! This is a paragraph on a Backbone.js page.</p>
-    <input type="text" placeholder="Type something..." />
+    <p>Testing a basic paragraph on a Backbone.js page.</p>
+    <input type="text" placeholder="Text the hell outta this!" />
   `),
 
   initialize: function () {
@@ -27,3 +27,42 @@ var AppView = Backbone.View.extend({
 });
 
 new AppView();
+
+
+
+//This block will get image from a model.___________________________________
+//Use bgModel.set('image', 'file_path'); to update img.
+var BackgroundModel = Backbone.Model.extend({
+  defaults: {
+    image: 'resources/img/drone.jpg',
+    opacity: 0.5
+  }
+});
+
+var BackgroundView = Backbone.View.extend({
+  el: ".background-overlay",
+
+  initialize: function () {
+    this.listenTo(this.model, 'change:image', this.updateBackground);
+    this.listenTo(this.model, 'change:opacity', this.updateOpacity);
+    this.updateBackground(); // show default image
+    this.updateOpacity();    // apply default opacity
+  },
+
+  updateBackground: function () {
+    const image = this.model.get('image');
+    this.$el.css({
+      'background-image': `url('${image}')`
+    });
+  },
+
+  updateOpacity: function () {
+    const opacity = this.model.get('opacity');
+    this.$el.css('opacity', opacity);
+  }
+});
+
+var bgModel = new BackgroundModel();
+new BackgroundView({ model: bgModel });
+
+//____________________________________________________________________________________

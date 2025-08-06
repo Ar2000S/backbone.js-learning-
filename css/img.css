@@ -1,0 +1,19 @@
+body {
+  position: relative;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  transition: opacity 0.5s ease; /* Optional: smooth opacity changes */
+}

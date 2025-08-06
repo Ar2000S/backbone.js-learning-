@@ -1,5 +1,5 @@
 var HistoryView = Backbone.View.extend({
-  el: '#app',
+  el: '#history',
 
   template: _.template(`
     <section id="history">
